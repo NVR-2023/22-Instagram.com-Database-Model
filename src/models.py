@@ -34,7 +34,7 @@ class Media(Base):
     type = Column(Enum('photo', 'video', 'reel', 'igtv'), nullable=False)   
     url = Column(String(2048), nullable=False)
     post_id = Column(Integer, ForeignKey("post.id"))
-    post = relationship("Post")
+    
 
 class Comment(Base):
     __tablename__ = "comment"
@@ -42,8 +42,7 @@ class Comment(Base):
     comment_text = Column(String(2200))
     author_id = Column(Integer, ForeignKey("new_user.id"))
     post_id = Column(Integer, ForeignKey("post.id"))
-    author = relationship("NewUser")
-    post = relationship("Post")
+    
 
 class Follower(Base):
     __tablename__ = "follower"
@@ -52,6 +51,7 @@ class Follower(Base):
     user_to_id = Column(Integer, ForeignKey("new_user.id"))
     user_from = relationship("NewUser")
     user_to = relationship("NewUser")
+
     
 
 ## Draw from SQLAlchemy base
